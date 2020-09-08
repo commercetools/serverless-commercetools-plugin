@@ -1,4 +1,4 @@
-'use strict';
+"use strict";
 
 class ServerlessPlugin {
   constructor(serverless, options) {
@@ -7,34 +7,35 @@ class ServerlessPlugin {
 
     this.commands = {
       welcome: {
-        usage: 'Helps you start your first Serverless plugin',
-        lifecycleEvents: ['hello', 'world'],
+        usage: "Helps you start your first Serverless plugin",
+        lifecycleEvents: ["hello", "world"],
         options: {
           message: {
             usage:
-              'Specify the message you want to deploy ' +
-              '(e.g. "--message \'My Message\'" or "-m \'My Message\'")',
+              "Specify the message you want to deploy " +
+              "(e.g. \"--message 'My Message'\" or \"-m 'My Message'\")",
             required: true,
-            shortcut: 'm',
+            shortcut: "m",
           },
         },
       },
     };
 
     this.hooks = {
-      'before:welcome:hello': this.beforeWelcome.bind(this),
-      'welcome:hello': this.welcomeUser.bind(this),
-      'welcome:world': this.displayHelloMessage.bind(this),
-      'after:welcome:world': this.afterHelloWorld.bind(this),
+      "before:welcome:hello": this.beforeWelcome.bind(this),
+      "welcome:hello": this.welcomeUser.bind(this),
+      "welcome:world": this.displayHelloMessage.bind(this),
+      "after:welcome:world": this.afterHelloWorld.bind(this),
+      "after:aws:deploy:finalize": this.afterDeploy.bind(this),
     };
   }
 
   beforeWelcome() {
-    this.serverless.cli.log('Hello from Serverless!');
+    this.serverless.cli.log("Hello from Serverless!");
   }
 
   welcomeUser() {
-    this.serverless.cli.log('Your message:');
+    this.serverless.cli.log("Your message:");
   }
 
   displayHelloMessage() {
@@ -42,7 +43,12 @@ class ServerlessPlugin {
   }
 
   afterHelloWorld() {
-    this.serverless.cli.log('Please come again!');
+    this.serverless.cli.log("Please come again!");
+  }
+  afterDeploy() {
+    this.serverless.cli.log(
+      "TODO: create commercetools subcription or extension based on yaml."
+    );
   }
 }
 

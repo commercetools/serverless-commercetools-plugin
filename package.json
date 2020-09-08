@@ -1,0 +1,19 @@
+{
+  "name": "serverless-commercetools-plugin",
+  "version": "1.0.0",
+  "description": "Serverless framework plugin that registers the deployed function as a commercetools API Extension or attaches it to a Subscription.",
+  "author": "commercetools Professional Services Team",
+  "keywords": [
+    "serverless",
+    "serverless-plugin",
+    "aws",
+    "aws-lambda",
+    "lambda",
+    "commercetools"
+  ],
+  "license": "MIT",
+  "main": "index.js",
+  "devDependencies": {
+    "eslint": "4.8.0"
+  }
+}
