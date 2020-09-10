@@ -4,7 +4,19 @@ Serverless framework plugin that registers the deployed function as a commerceto
 ## Development
 
 1. In your serverless lambda create a folder called .serverless_plugins. Place your plugin folder there for development.
-2. Into your serverless.yaml place:
+2. At the bottom of your function's serverless.yaml place:
     `plugins:`
         `- serverless-commercetools-plugin`
-3. Run `serverless deploy`.
+3.  In your serverless.yaml under the service, directly below region, add environment vars for your commercetools client. 
+    Example:    region: us-east-2
+                       environment:
+                            CTP_PROJECT_KEY: "your_key"
+                            CTP_CLIENT_SECRET: "your_secret"
+                            CTP_CLIENT_ID: "your_clientid"
+                            CTP_AUTH_URL: "your_authurl"
+                            CTP_API_URL: "your_apiUrl"
+                            CTP_SCOPES: "your_scopes"
+4. Run `serverless deploy`.
+
+
+
