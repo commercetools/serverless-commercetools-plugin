@@ -26,7 +26,7 @@ class ServerlessPlugin {
       "welcome:hello": this.welcomeUser.bind(this),
       "welcome:world": this.displayHelloMessage.bind(this),
       "after:welcome:world": this.afterHelloWorld.bind(this),
-      "after:aws:deploy:finalize": this.afterDeploy.bind(this),
+      "aws:deploy:finalize:cleanup": this.afterDeploy.bind(this),
     };
   }
 
@@ -45,7 +45,14 @@ class ServerlessPlugin {
   afterHelloWorld() {
     this.serverless.cli.log("Please come again!");
   }
+
+  beforeDeploy() {
+    console.log("in before deploy");
+    this.serverless.cli.log("Before deploy.");
+  }
+
   afterDeploy() {
+    console.log("in after deploy");
     this.serverless.cli.log(
       "TODO: create commercetools subcription or extension based on yaml."
     );
