@@ -52,9 +52,13 @@ class ServerlessPlugin {
   }
 
   afterDeploy() {
-    console.log("in after deploy");
+    console.log(
+      "CLIENT_ID: ",
+      this.serverless.service.provider.environment.CTP_PROJECT_KEY
+    );
+
     this.serverless.cli.log(
-      "TODO: create commercetools subcription or extension based on yaml."
+      "Creating commercetools subcription based on yaml specifications."
     );
   }
 }
