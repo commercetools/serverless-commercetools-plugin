@@ -8,7 +8,7 @@ Serverless framework plugin that registers the deployed function as a commerceto
     `plugins:`
         `- serverless-commercetools-plugin`
 3.  In your serverless.yaml under the service, directly below region, add environment vars for your commercetools client. 
-    Example:    region: us-east-2
+     Example:    region: us-east-2
                        environment:
                             CTP_PROJECT_KEY: "your_key"
                             CTP_CLIENT_SECRET: "your_secret"
@@ -16,7 +16,23 @@ Serverless framework plugin that registers the deployed function as a commerceto
                             CTP_AUTH_URL: "your_authurl"
                             CTP_API_URL: "your_apiUrl"
                             CTP_SCOPES: "your_scopes"
-4. Run `serverless deploy`.
+                            
+4. In your severlerless.yaml add the deploy type ("extension" or "subscription") and your body configuration for the subscription or extension. 
+    Example:
+                            CTP_DEPLOY_TYPE: "extension"
+                            CTP_POST_BODY: '{
+                                "destination": {
+                                "type": "AWSLambda",
+                                "arn": "arn:aws:lambda:us-east-1:12345678:function:awsmainlambda-dev-hello",
+                                "accessKey": "your_key",
+                                "accessSecret": "your_secret"
+                                },
+                                "triggers": [{
+                                "resourceTypeId": "cart",
+                                "actions": ["Create", "Update"]
+                                }]
+                            }'
+5. Run `serverless deploy`.
 
 
 
