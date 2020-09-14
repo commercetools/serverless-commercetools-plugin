@@ -24,36 +24,36 @@ Serverless framework plugin that registers the deployed function as a commerceto
  [Extensions]( https://docs.commercetools.com/http-api-projects-api-extensions)  
  
  Example 1. Extensions:
-                         ```CTP_DEPLOY_TYPE: "extension"
-                            CTP_POST_BODY: '{
-                                "destination": {
-                                "type": "AWSLambda",
-                                "arn": "arn:aws:lambda:us-east-1:12345678:function:awsmainlambda-dev-hello",
-                                "accessKey": "your_key",
-                                "accessSecret": "your_secret"
-                                },
-                                "triggers": [{
-                                "resourceTypeId": "cart",
-                                "actions": ["Create", "Update"]
-                                }]
-                            }'``` 
+                            ```CTP_DEPLOY_TYPE: "extension"
+                               CTP_POST_BODY: '{
+                                    "destination": {
+                                    "type": "AWSLambda",
+                                   "arn": "arn:aws:lambda:us-east-1:12345678:function:awsmainlambda-dev-hello",
+                                   "accessKey": "your_key",
+                                   "accessSecret": "your_secret"
+                                   },
+                                   "triggers": [{
+                                   "resourceTypeId": "cart",
+                                   "actions": ["Create", "Update"]
+                                   }]
+                               }'``` 
                             
                             
  Example 2. Subscriptions:
-                      ```CTP_DEPLOY_TYPE: "subscription"
-                         CTP_POST_BODY: '{
-                                "destination": {
-                                "type": "SQS",
-                                "queueUrl": "<url_to_your_queue>",
-                                "accessKey": "<your_key>",
-                                "accessSecret": "<your_secret>",
-                                "region": "<your_region>"
-                                },
-                                "messages": [
-                                {
-                                    "resourceTypeId": "order"
-                                }
-                                ]
+                       ```CTP_DEPLOY_TYPE: "subscription"
+                           CTP_POST_BODY: '{
+                                  "destination": {
+                                    "type": "SQS",
+                                    "queueUrl": "<url_to_your_queue>",
+                                 "accessKey": "<your_key>",
+                                 "accessSecret": "<your_secret>",
+                                 "region": "<your_region>"
+                                  },
+                                 "messages": [
+                                 {
+                                     "resourceTypeId": "order"
+                                 }
+                                 ]
                             }'``` 
                             
 5. Run `serverless deploy`.
