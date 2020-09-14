@@ -21,7 +21,7 @@ Serverless framework plugin that registers the deployed function as a commerceto
  [Subscriptions]( https://docs.commercetools.com/http-api-projects-subscriptions)
  [Extensions]( https://docs.commercetools.com/http-api-projects-api-extensions)
 
-    Example:
+    Example 1. Extensions:
                             CTP_DEPLOY_TYPE: "extension"
                             CTP_POST_BODY: '{
                                 "destination": {
@@ -34,6 +34,23 @@ Serverless framework plugin that registers the deployed function as a commerceto
                                 "resourceTypeId": "cart",
                                 "actions": ["Create", "Update"]
                                 }]
+                            }'
+                            
+      Example 2. Subscriptions:
+                         CTP_DEPLOY_TYPE: "subscription"
+                         CTP_POST_BODY: '{
+                                "destination": {
+                                "type": "SQS",
+                                "queueUrl": "<url_to_your_queue>",
+                                "accessKey": "<your_key>",
+                                "accessSecret": "<your_secret>",
+                                "region": "<your_region>"
+                                },
+                                "messages": [
+                                {
+                                    "resourceTypeId": "order"
+                                }
+                                ]
                             }'
 5. Run `serverless deploy`.
 
