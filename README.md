@@ -7,7 +7,8 @@ Serverless framework plugin that registers the deployed function as a commerceto
         `- serverless-commercetools-plugin`
 2.  In your serverless.yaml under the service, directly below region, add environment vars for your commercetools client.  
 
-     Example:    
+     Example: 
+     
              ```  
              region: us-east-2
                        environment:
