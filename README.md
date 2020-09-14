@@ -9,7 +9,7 @@ Serverless framework plugin that registers the deployed function as a commerceto
 
      Example: 
      
-             ```  
+               
              region: us-east-2
                        environment:
                             CTP_PROJECT_KEY: "your_key"
@@ -18,7 +18,7 @@ Serverless framework plugin that registers the deployed function as a commerceto
                             CTP_AUTH_URL: "your_authurl"
                             CTP_API_URL: "your_apiUrl"
                             CTP_SCOPES: "your_scopes"
-             ```
+             
                             
 3. In your severlerless.yaml add environment vars for the deploy type ("extension" or "subscription") and your body configuration for the [Subscription]( https://docs.commercetools.com/http-api-projects-subscriptions) or [Extension]( https://docs.commercetools.com/http-api-projects-api-extensions).
 
@@ -45,7 +45,7 @@ Serverless framework plugin that registers the deployed function as a commerceto
                             
  Example 2. Subscriptions:  
  
-                       ```
+                       
                        CTP_DEPLOY_TYPE: "subscription"
                            CTP_POST_BODY: '{
                                   "destination": {
@@ -61,7 +61,7 @@ Serverless framework plugin that registers the deployed function as a commerceto
                                  }
                                  ]
                             }'
-                        ``` 
+                         
                             
 4. Run `serverless deploy`.
 
