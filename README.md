@@ -18,7 +18,7 @@ Serverless framework plugin that registers the deployed function as a commerceto
                             CTP_SCOPES: "your_scopes"
                             
 4. In your severlerless.yaml add the deploy type ("extension" or "subscription") and your body configuration for the subscription or extension.
- [Subscriptions]( https://docs.commercetools.com/http-api-projects-subscriptions)
+ [Subscriptions]( https://docs.commercetools.com/http-api-projects-subscriptions) 
  [Extensions]( https://docs.commercetools.com/http-api-projects-api-extensions)
 
     Example 1. Extensions:
