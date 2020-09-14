@@ -1,13 +1,11 @@
 # Serverless commercetools Plugin
 Serverless framework plugin that registers the deployed function as a commercetools API Extension or attaches it to a Subscription.
 
-## Development
-
-1. In your serverless lambda create a folder called .serverless_plugins. Place your plugin folder there for development.
-2. At the bottom of your function's serverless.yaml place:
+## Configuration and Deploy
+1. At the bottom of your function's serverless.yaml place:
     `plugins:`
         `- serverless-commercetools-plugin`
-3.  In your serverless.yaml under the service, directly below region, add environment vars for your commercetools client.  
+2.  In your serverless.yaml under the service, directly below region, add environment vars for your commercetools client.  
 
      Example:    
              ```  region: us-east-2
@@ -19,7 +17,7 @@ Serverless framework plugin that registers the deployed function as a commerceto
                             CTP_API_URL: "your_apiUrl"
                             CTP_SCOPES: "your_scopes"```
                             
-4. In your severlerless.yaml add environment vars for the deploy type ("extension" or "subscription") and your body configuration for the [Subscription]( https://docs.commercetools.com/http-api-projects-subscriptions) or [Extension]( https://docs.commercetools.com/http-api-projects-api-extensions).
+3. In your severlerless.yaml add environment vars for the deploy type ("extension" or "subscription") and your body configuration for the [Subscription]( https://docs.commercetools.com/http-api-projects-subscriptions) or [Extension]( https://docs.commercetools.com/http-api-projects-api-extensions).
 
  
  
@@ -56,7 +54,12 @@ Serverless framework plugin that registers the deployed function as a commerceto
                                  ]
                             }'``` 
                             
-5. Run `serverless deploy`.
+4. Run `serverless deploy`.
+
+
+## Development
+
+ In your serverless function create a folder called .serverless_plugins. Place your plugin folder there for development.
 
 
 
