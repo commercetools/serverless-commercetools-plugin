@@ -8,21 +8,24 @@ Serverless framework plugin that registers the deployed function as a commerceto
 2.  In your serverless.yaml under the service, directly below region, add environment vars for your commercetools client.  
 
      Example:    
-             ```  region: us-east-2
+             ```  
+             region: us-east-2
                        environment:
                             CTP_PROJECT_KEY: "your_key"
                             CTP_CLIENT_SECRET: "your_secret"
                             CTP_CLIENT_ID: "your_clientid"
                             CTP_AUTH_URL: "your_authurl"
                             CTP_API_URL: "your_apiUrl"
-                            CTP_SCOPES: "your_scopes"```
+                            CTP_SCOPES: "your_scopes"
+             ```
                             
 3. In your severlerless.yaml add environment vars for the deploy type ("extension" or "subscription") and your body configuration for the [Subscription]( https://docs.commercetools.com/http-api-projects-subscriptions) or [Extension]( https://docs.commercetools.com/http-api-projects-api-extensions).
 
  
  
  Example 1. Extensions:
-                            ```CTP_DEPLOY_TYPE: "extension"
+                            ```
+                            CTP_DEPLOY_TYPE: "extension"
                                CTP_POST_BODY: '{
                                     "destination": {
                                     "type": "AWSLambda",
@@ -34,11 +37,13 @@ Serverless framework plugin that registers the deployed function as a commerceto
                                    "resourceTypeId": "cart",
                                    "actions": ["Create", "Update"]
                                    }]
-                               }'``` 
+                               }'
+                            ``` 
                             
                             
  Example 2. Subscriptions:
-                       ```CTP_DEPLOY_TYPE: "subscription"
+                       ```
+                       CTP_DEPLOY_TYPE: "subscription"
                            CTP_POST_BODY: '{
                                   "destination": {
                                     "type": "SQS",
@@ -52,7 +57,8 @@ Serverless framework plugin that registers the deployed function as a commerceto
                                      "resourceTypeId": "order"
                                  }
                                  ]
-                            }'``` 
+                            }'
+                        ``` 
                             
 4. Run `serverless deploy`.
 
