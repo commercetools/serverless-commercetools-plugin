@@ -26,7 +26,7 @@ Serverless framework plugin that registers the deployed function as a commerceto
  
  Example 1. Extensions: 
  
-                            ```
+                            
                             CTP_DEPLOY_TYPE: "extension"
                                CTP_POST_BODY: '{
                                     "destination": {
@@ -40,7 +40,7 @@ Serverless framework plugin that registers the deployed function as a commerceto
                                    "actions": ["Create", "Update"]
                                    }]
                                }'
-                            ``` 
+                             
                             
                             
  Example 2. Subscriptions:  
