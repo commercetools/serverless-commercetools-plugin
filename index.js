@@ -19,7 +19,7 @@ class ServerlessPlugin {
     this.postBody = this.serverless.service.provider.environment.CTP_POST_BODY;
     this.commands = {};
     this.hooks = {
-      "aws:deploy:finalize:cleanup": this.afterDeploy.bind(this),
+      "deploy:finalize": this.afterDeploy.bind(this),
     };
   }
 
