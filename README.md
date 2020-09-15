@@ -1,10 +1,12 @@
 # Serverless commercetools Plugin
 Serverless framework plugin that registers the deployed function as a commercetools API Extension or attaches it to a Subscription.
 
-## Configuration and Deploy
+## Configuration and Deploy for AWS
 1. At the bottom of your function's serverless.yaml place:
     `plugins:`
         `- serverless-commercetools-plugin`
+    In your serverless function create a folder called .serverless_plugins. Place the serverless-commercetools-plugin folder into .serverless_plugins with dependencies installed.
+
 2.  In your serverless.yaml under the service, directly below region, add environment vars for your commercetools client.  
 
      Example: 
