@@ -6,8 +6,9 @@ Serverless framework plugin that registers the deployed function as a commerceto
     `plugins:`
         `- serverless-commercetools-plugin`
         
-    Plugin install method 1. Install it as a regular npm module and reference it in plugins section of your serverless.yml shown above. Or use the serverless plugin install command [serverless plugin install --name pluginName](https://www.serverless.com/framework/docs/providers/aws/cli-reference/plugin-install/)
-    Plugin install method 2. In your serverless function create a folder called .serverless_plugins. Place the serverless-commercetools-plugin folder into .serverless_plugins with dependencies installed.
+    Plugin install method 1 - Install it as a regular npm module and reference it in plugins section of your serverless.yml shown above. Or use the serverless plugin install command [serverless plugin install --name pluginName](https://www.serverless.com/framework/docs/providers/aws/cli-reference/plugin-install/).  
+    
+    Plugin install method 2  - In your serverless function create a folder called .serverless_plugins. Place the serverless-commercetools-plugin folder into .serverless_plugins with dependencies installed.
 
 2.  In your serverless.yaml under the service, directly below region, add environment vars for your commercetools client.  
 
