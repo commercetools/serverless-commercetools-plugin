@@ -45,10 +45,10 @@ Serverless framework plugin that registers the deployed function as a commerceto
                                    "actions": ["Create", "Update"]
                                    }]
                                }'
-                             
-                            
-                            
- Example 2. Subscriptions:  
+                               
+ [Lambda arn doc](https://docs.aws.amazon.com/lambda/latest/dg/lambda-api-permissions-ref.html)
+
+Example 2. Subscriptions:  
  
                        
                            CTP_DEPLOY_TYPE: "subscription"
