@@ -2,7 +2,7 @@
 
 Serverless framework plugin that registers the deployed function as a commercetools API Extension or attaches it to a Subscription.
 
-## Configuration and Deploy for AWS
+## Configuration and Deploy for AWS and GCP
 
 1.  At the bottom of your function's serverless.yaml place:
     `plugins:`
@@ -43,6 +43,8 @@ Example 1. Extensions:
                                }'
 
 Note: The Lambda ARN is smartly assembled by the plugin. Thus you do not need to add it explicitly to the post body.
+
+For Google Cloud Platform function deploys simple set the CTP_POST_BODY to use the HTTP destination as outlined in the commercetools API Extension documentation.
 
 Example 2. Subscriptions:
 
