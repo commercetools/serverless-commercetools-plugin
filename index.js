@@ -17,10 +17,25 @@ class ServerlessPlugin {
     this.scopes = this.serverless.service.provider.environment.CTP_SCOPES;
     this.deployType = this.serverless.service.provider.environment.CTP_DEPLOY_TYPE;
     this.postBody = this.serverless.service.provider.environment.CTP_POST_BODY;
+    this.provider = this.serverless.service.provider.name;
     this.commands = {};
     this.hooks = {
       "deploy:finalize": this.afterDeploy.bind(this),
     };
+  }
+
+  async assembleLambdaARN(region) {
+    const AWS = require("aws-sdk");
+    const sts = new AWS.STS();
+    const stsIdentity = await sts.getCallerIdentity({}).promise();
+    const accountId = stsIdentity.Account;
+    const functionNames = this.serverless.service.functions;
+    const functionName = Object.values(functionNames)[0].name;
+    const lambdaARN = `arn:aws:lambda:${region}:${accountId}:function:${functionName}`;
+    this.serverless.cli.log("Lambda ARN: " + lambdaARN);
+    let jsonPost = JSON.parse(this.postBody);
+    jsonPost.arn = lambdaARN;
+    this.postBody = jsonPost;
   }
 
   async afterDeploy() {
@@ -30,7 +45,11 @@ class ServerlessPlugin {
       "Function deployed. Creating commercetools integration based on yaml specifications for project: " +
         projectKey
     );
+    const region = this.serverless.service.provider.region;
     this.serverless.cli.log("Creating: " + this.deployType);
+    if (this.provider === "aws") {
+      await this.assembleLambdaARN(region);
+    }
     const authMiddleware = middlewareAuth.createAuthMiddlewareForClientCredentialsFlow(
       {
         host: this.authURL,
