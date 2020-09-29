@@ -1,6 +1,6 @@
 {
     "name": "serverless-commercetools-plugin",
-    "version": "1.1.4",
+    "version": "1.1.5",
     "description": "Serverless framework plugin that registers the deployed function as a commercetools API Extension or attaches it to a Subscription.",
     "author": "commercetools Professional Services Team",
     "keywords": [
