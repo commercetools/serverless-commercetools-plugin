@@ -133,3 +133,5 @@ The GitHub issues are intended for bug reports and feature requests specifically
 Create a local serverless function or copy the code from the examples folder. Add the plugin code to a folder named .serverless_plugins at the root of your serverless project.
 
 ## License
+
+Released as-is under the MIT license. See LICENSE for details.
