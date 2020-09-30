@@ -1,71 +1,137 @@
-# Serverless commercetools Plugin
+# commercetools Serverless Plugin
 
-Serverless framework plugin that registers the deployed function as a commercetools API Extension or attaches it to a Subscription.
+[commercetools's](https://commercetools.com/) plugin for the [Serverless Framework](https://serverless.com) allows you to seamlessly integrate your serverless functions with commercetools' extensibility options.
 
-## Configuration and Deploy for AWS and GCP
+## Contents
 
-1.  At the bottom of your function's serverless.yaml place:
-    `plugins:`
-    `- serverless-commercetools-plugin`
+- [Features](#features)
+- [Install](#install)
+- [Configuration](#configuration)
+  - [API Extension](#api-extension)
+  - [Subscription](#subscription)
+- [Usage](#usage)
+- [Help](#help)
+- [Development](#development)
+- [License](#license)
 
-    Plugin install method 1 - Install it as a regular [npm module ](https://www.npmjs.com/package/serverless-commercetools-plugin) and reference it in plugins section of your serverless.yml shown above. Or use the serverless plugin install command [serverless plugin install --name pluginName](https://www.serverless.com/framework/docs/providers/aws/cli-reference/plugin-install/).
+## Features
 
-    Plugin install method 2 - In your serverless function create a folder called .serverless_plugins. Place the serverless-commercetools-plugin folder into .serverless_plugins with dependencies installed.
+- Attach a newly deployed serverless function as a commercetools' API extension.
+- Create a new serverless function to process events from a commercetools' subscription.
+- Supports AWS and GCP
 
-2.  In your serverless.yaml under the service, directly below region, add environment vars for your commercetools client.
+## Install
 
-    Example:
+```sh
+npm i --save-dev serverless-commercetools-plugin
+# or
+yarn add --dev serverless-commercetools-plugin
+```
 
-             region: us-east-2
-                       environment:
-                            CTP_PROJECT_KEY: "your_key"
-                            CTP_CLIENT_SECRET: "your_secret"
-                            CTP_CLIENT_ID: "your_clientid"
-                            CTP_AUTH_URL: "your_authurl"
-                            CTP_API_URL: "your_apiUrl"
-                            CTP_SCOPES: "your_scopes"
+Add the following plugin to your `serverless.yml`:
 
-3)  In your severlerless.yaml add environment vars for the deploy type ("extension" or "subscription") and your body configuration for the [Subscription](https://docs.commercetools.com/http-api-projects-subscriptions) or [Extension](https://docs.commercetools.com/http-api-projects-api-extensions).
+```yaml
+plugins:
+  - serverless-commercetools-plugin
+```
 
-Example 1. Extensions:
+With the [serverless CLI](https://www.serverless.com/framework/docs/providers/aws/cli-reference/plugin-install/)
 
-                               CTP_DEPLOY_TYPE: "extension"
-                               CTP_POST_BODY: '{
-                                    "destination": {
-                                      "type": "AWSLambda",
-                                      "accessKey": "your_key",
-                                      "accessSecret": "your_secret"
-                                   },
-                                   "triggers": [{
-                                     "resourceTypeId": "cart",
-                                     "actions": ["Create", "Update"]
-                                   }]
-                               }'
+```sh
+serverless plugin install --name serverless-commercetools-plugin
+```
 
-Note: The Lambda ARN is smartly assembled by the plugin. Thus you do not need to add it explicitly to the post body.
+## Configuration
 
-For Google Cloud Platform function deploys simple set the CTP_POST_BODY to use the HTTP destination as outlined in the commercetools API Extension documentation.
+Add your commercetools' project settings to the serverless.yaml file. Add these values under the provider section:
 
-Example 2. Subscriptions:
+```yaml
+provider:
+  environment:
+    CTP_PROJECT_KEY: "your_key"
+    CTP_CLIENT_SECRET: "your_secret"
+    CTP_CLIENT_ID: "your_clientid"
+    CTP_AUTH_URL: "your_authurl"
+    CTP_API_URL: "your_apiUrl"
+    CTP_SCOPES: "your_scopes"
+```
 
-                           CTP_DEPLOY_TYPE: "subscription"
-                           CTP_POST_BODY: '{
-                                  "destination": {
-                                    "type": "SQS",
-                                    "queueUrl": "<url_to_your_queue>",
-                                 "accessKey": "<your_key>",
-                                 "accessSecret": "<your_secret>",
-                                 "region": "<your_region>"
-                                  },
-                                 "messages": [
-                                 {
-                                     "resourceTypeId": "order"
-                                 }
-                                 ]
-                            }'
+### API Extension
 
-4. Run `serverless deploy`.
+Add environment vars for the deploy type ("extension") and your body configuration for the [Extension](https://docs.commercetools.com/http-api-projects-api-extensions).
+
+```yaml
+    CTP_DEPLOY_TYPE: "extension"
+    CTP_POST_BODY: '{
+        "destination": {
+          "type": "AWSLambda",
+          "accessKey": "your_aws_key",
+          "accessSecret": "your_aws_secret"
+        },
+        "triggers": [{
+          "resourceTypeId": "cart",
+          "actions": ["Create", "Update"]
+        }]
+    }'
+```
+
+_Note: The Lambda ARN is determined by the plugin. You do not need to include it in the configuration._
+
+_For Google Cloud Platform functions set the CTP_POST_BODY to use the HTTP destination as outlined in the [commercetools API Extension documentation.](https://docs.commercetools.com/api/projects/api-extensions#http-destination)_
+
+### Subscription
+
+Add environment vars for the deploy type ("subscription") and your body configuration for the [Subscription](https://docs.commercetools.com/http-api-projects-subscriptions).
+
+```yaml
+    CTP_DEPLOY_TYPE: "extension"
+    CTP_POST_BODY: '{
+        "destination": {
+          "type": "AWSLambda",
+          "accessKey": "your_aws_key",
+          "accessSecret": "your_aws_secret"
+        },
+        "triggers": [{
+          "resourceTypeId": "cart",
+          "actions": ["Create", "Update"]
+        }]
+    }'
+```
+
+## Usage
+
+To build your cloud resources and configure the commercetools' project run:
+
+```sh
+serverless deploy
+```
+
+To remove all cloud resources and commercetools' configuration run:
+
+```sh
+serverless remove
+```
+
+## Help
+
+If you have any issues, please don't hesitate to:
+
+- Use the [documentation](https://docs.commercetools.com).
+- Open an issue in GitHub.
+
+When opening a new issue, please provide as much information as possible including:
+
+- Plugin version
+- node version
+- cloud environment
+- A reproducible code example
+
+The GitHub issues are intended for bug reports and feature requests specifically related to the serverless plugin.
 
 ## Development
 
-In your serverless function create a folder called .serverless_plugins. Place your plugin folder there for development.
+Create a local serverless function or copy the code from the examples folder. Add the plugin code to a folder named .serverless_plugins at the root of your serverless project.
+
+## License
+
+Released as-is under the MIT license. See LICENSE for details.
