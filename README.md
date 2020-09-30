@@ -43,17 +43,17 @@ serverless plugin install --name serverless-commercetools-plugin
 
 ## Configuration
 
-Add your commercetools' project settings to the serverless.yaml file. Add these values under the service, directly below region:
+Add your commercetools' project settings to the serverless.yaml file. Add these values under the provider section:
 
 ```yaml
-  region: us-east-2
-            environment:
-                CTP_PROJECT_KEY: "your_key"
-                CTP_CLIENT_SECRET: "your_secret"
-                CTP_CLIENT_ID: "your_clientid"
-                CTP_AUTH_URL: "your_authurl"
-                CTP_API_URL: "your_apiUrl"
-                CTP_SCOPES: "your_scopes"
+provider:
+  environment:
+    CTP_PROJECT_KEY: "your_key"
+    CTP_CLIENT_SECRET: "your_secret"
+    CTP_CLIENT_ID: "your_clientid"
+    CTP_AUTH_URL: "your_authurl"
+    CTP_API_URL: "your_apiUrl"
+    CTP_SCOPES: "your_scopes"
 ```
 
 ### API Extension
@@ -61,18 +61,18 @@ Add your commercetools' project settings to the serverless.yaml file. Add these 
 Add environment vars for the deploy type ("extension") and your body configuration for the [Extension](https://docs.commercetools.com/http-api-projects-api-extensions).
 
 ```yaml
-CTP_DEPLOY_TYPE: "extension"
-CTP_POST_BODY: '{
-    "destination": {
-      "type": "AWSLambda",
-      "accessKey": "your_key",
-      "accessSecret": "your_secret"
-    },
-    "triggers": [{
-      "resourceTypeId": "cart",
-      "actions": ["Create", "Update"]
-    }]
-}'
+    CTP_DEPLOY_TYPE: "extension"
+    CTP_POST_BODY: '{
+        "destination": {
+          "type": "AWSLambda",
+          "accessKey": "your_aws_key",
+          "accessSecret": "your_aws_secret"
+        },
+        "triggers": [{
+          "resourceTypeId": "cart",
+          "actions": ["Create", "Update"]
+        }]
+    }'
 ```
 
 _Note: The Lambda ARN is determined by the plugin. You do not need to include it in the configuration._
@@ -84,18 +84,18 @@ _For Google Cloud Platform functions set the CTP_POST_BODY to use the HTTP desti
 Add environment vars for the deploy type ("subscription") and your body configuration for the [Subscription](https://docs.commercetools.com/http-api-projects-subscriptions).
 
 ```yaml
-CTP_DEPLOY_TYPE: "extension"
-CTP_POST_BODY: '{
-    "destination": {
-      "type": "AWSLambda",
-      "accessKey": "your_key",
-      "accessSecret": "your_secret"
-    },
-    "triggers": [{
-      "resourceTypeId": "cart",
-      "actions": ["Create", "Update"]
-    }]
-}'
+    CTP_DEPLOY_TYPE: "extension"
+    CTP_POST_BODY: '{
+        "destination": {
+          "type": "AWSLambda",
+          "accessKey": "your_aws_key",
+          "accessSecret": "your_aws_secret"
+        },
+        "triggers": [{
+          "resourceTypeId": "cart",
+          "actions": ["Create", "Update"]
+        }]
+    }'
 ```
 
 ## Usage
