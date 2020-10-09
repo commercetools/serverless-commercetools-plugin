@@ -3,6 +3,7 @@ const clientCreate = require("@commercetools/sdk-client");
 const middlewareAuth = require("@commercetools/sdk-middleware-auth");
 const createMiddleware = require("@commercetools/sdk-middleware-http");
 const clientQueue = require("@commercetools/sdk-middleware-queue");
+const fetch = require("node-fetch");
 ("use strict");
 
 class ServerlessPlugin {
@@ -58,10 +59,12 @@ class ServerlessPlugin {
           clientId: this.clientId,
           clientSecret: this.clientSecret,
         },
+        fetch,
       }
     );
     const httpMiddleware = createMiddleware.createHttpMiddleware({
       host: this.apiUrl,
+      fetch,
     });
     const queueMiddleware = clientQueue.createQueueMiddleware({
       concurrency: 5,
