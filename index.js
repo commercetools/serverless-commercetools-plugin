@@ -35,7 +35,7 @@ class ServerlessPlugin {
     const lambdaARN = `arn:aws:lambda:${region}:${accountId}:function:${functionName}`;
     this.serverless.cli.log("Lambda ARN: " + lambdaARN);
     let jsonPost = JSON.parse(this.postBody);
-    jsonPost.arn = lambdaARN;
+    jsonPost.destination.arn = lambdaARN;
     this.postBody = jsonPost;
   }
 
@@ -48,9 +48,6 @@ class ServerlessPlugin {
     );
     const region = this.serverless.service.provider.region;
     this.serverless.cli.log("Creating: " + this.deployType);
-    if (this.provider === "aws") {
-      await this.assembleLambdaARN(region);
-    }
     const authMiddleware = middlewareAuth.createAuthMiddlewareForClientCredentialsFlow(
       {
         host: this.authURL,
@@ -74,6 +71,9 @@ class ServerlessPlugin {
     });
     if (this.deployType === "extension") {
       service = requestBuilder.createRequestBuilder({ projectKey }).extensions;
+      if (this.provider === "aws") {
+        await this.assembleLambdaARN(region);
+      }
     }
     if (this.deployType === "subscription") {
       service = requestBuilder.createRequestBuilder({ projectKey })
