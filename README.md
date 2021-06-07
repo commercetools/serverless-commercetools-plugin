@@ -77,6 +77,8 @@ Add environment vars for the deploy type ("extension") and your body configurati
 
 _Note: The Lambda ARN is determined by the plugin. You do not need to include it in the configuration._
 
+_Note: Please note that you can set a key on extensions and subscriptions. The key prevents the same extension or subscription from being deployed twice from CI/CD and manually deploys. One can modify the code from this Opensource repo to customize your deploys for setup in CI/CD and multiply runs.
+
 _For Google Cloud Platform functions set the CTP_POST_BODY to use the HTTP destination as outlined in the [commercetools API Extension documentation.](https://docs.commercetools.com/api/projects/api-extensions#http-destination)_
 
 ### Subscription
