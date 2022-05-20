@@ -86,7 +86,7 @@ _For Google Cloud Platform functions set the CTP_POST_BODY to use the HTTP desti
 Add environment vars for the deploy type ("subscription") and your body configuration for the [Subscription](https://docs.commercetools.com/http-api-projects-subscriptions).
 
 ```yaml
-    CTP_DEPLOY_TYPE: "extension"
+    CTP_DEPLOY_TYPE: "subscription"
     CTP_POST_BODY: '{
         "destination": {
           "type": "AWSLambda",
